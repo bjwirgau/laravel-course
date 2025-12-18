@@ -1,8 +1,5 @@
-@extends('layout')
-
-@section('title', 'Create Job')
-
-@section('content')
+<x-layout>
+  <x-slot name="title">Workopia | Create Job</x-slot>
   <h1>Create New Job</h1>
   <form action="/jobs" method="POST">
     @csrf
@@ -10,4 +7,4 @@
     <input type="text" name="description" placeholder="Job Description">
     <button type="submit">Create Job</button>
   </form>
-@endsection
+</x-layout>
