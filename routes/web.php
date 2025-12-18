@@ -1,35 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\JobController;
+use App\Http\Controllers\HomeController;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/jobs', function() {
-    $title = 'Available Jobs';
-    $jobs = [
-        'Software Engineer',
-        'Data Scientist',
-        'Product Manager',
-        'UX Designer'
-    ];
-
-    // Method 1
-    // return view('jobs.index', [
-    //     'title' => 'Available Jobs'
-    // ]);
-
-    // Method 2
-    // return view('jobs.index')
-    //     ->with('title', $title)
-    //     ->with('jobs', $jobs);
-
-    // Method 3
-    return view('jobs.index', compact('title', 'jobs'));
-
-})->name('jobs');
-
-Route::get('/jobs/create', function() {
-    return view('jobs.create');
-})->name('jobs.create');
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/jobs', [JobController::class, 'index'])->name('jobs.index');
+Route::get('/jobs/create', [JobController::class, 'create'])->name('jobs.create');
