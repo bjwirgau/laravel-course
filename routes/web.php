@@ -9,5 +9,4 @@ Route::get('/', function () {
 });
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/jobs/share', [JobController::class, 'share'])->name('jobs.shared');
 Route::resource('jobs', JobController::class);
