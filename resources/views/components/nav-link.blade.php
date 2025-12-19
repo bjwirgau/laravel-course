@@ -2,9 +2,10 @@
     'url' => '/',
     'active' => false,
     'icon' => null,
+    'mobile' => null
 ])
 
-<a href="{{ $url }}" class="text-white hover:underline py-2 {{$active ? 'font-bold text-yellow-500' : ''}}">
+<a href="{{ $url }}" class="{{$mobile ? 'block px-4 py-2 hover:bg-blue-700' : 'text-white hover:underline py-2'}} {{$active ? 'font-bold text-yellow-500' : ''}}">
     @if($icon)
         <i class="fa fa-{{$icon}} mr-1"></i>
     @endif
