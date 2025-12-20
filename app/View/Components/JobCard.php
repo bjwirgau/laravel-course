@@ -4,7 +4,6 @@ namespace App\View\Components;
 
 use Closure;
 use Illuminate\Contracts\View\View;
-use Illuminate\Support\Number;
 use Illuminate\View\Component;
 
 class JobCard extends Component
@@ -23,11 +22,5 @@ class JobCard extends Component
     public function render(): View|Closure|string
     {
         return view('components.job-card');
-    }
-
-    public function formatSalary($salary)
-    {
-        return Number::currency($salary, 'USD', 'en_US', 0);
-
     }
 }
