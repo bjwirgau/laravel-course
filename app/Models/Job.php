@@ -24,7 +24,7 @@ class Job extends Model
         'address',
         'city',
         'state',
-        'zipcode',
+        'zip_code',
         'contact_email',
         'contact_phone',
         'company_name',
