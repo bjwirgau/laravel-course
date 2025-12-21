@@ -23,13 +23,13 @@
             <x-inputs.text id="tags" name="tags" label="Tags (comma-separated)" placeholder="development,coding,java,python"></x-inputs>
 
             <x-inputs.select id="job_type" name="job_type" label="Job Type" value="{{ old('job_type') }}" :options="[
-              'Full-Time' => 'Full-Time',
-              'Part-Time' => 'Part-Time',
-              'Contract' => 'Contract',
-              'Temporary' => 'Temporary',
-              'Internship' => 'Internship',
-              'Volunteer' => 'Volunteer',
-              'On-Call' => 'On-Call']">
+              'full-time', 
+                'part-time' => 'part-time',
+                'contract' => 'contract', 
+                'temp' => 'temp', 
+                'internship' => 'internship',
+                'volunteer' => 'volunteer',
+                'on-call' => 'on-call']">
             </x-inputs.select>
 
             <x-inputs.select id="remote" name="remote" label="Remote" value="{{ old('remote') }}" :options="[
