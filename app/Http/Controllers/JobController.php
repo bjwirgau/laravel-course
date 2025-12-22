@@ -79,10 +79,7 @@ class JobController extends Controller
         // Check for image
         if ($request->hasFile('company_logo')) {
             // Delete old logo
-            if ($job->company_logo) {
-                unlink(public_path('storage/' . $job->company_logo));
-                Storage::delete('public/logos' . baseName($job->company_logo));
-            }
+           $this->deleteLogo($job->company_logo);
             
             // Store the image and get path
             $path = $request->file('company_logo')->store('logos', 'public');
@@ -100,9 +97,16 @@ class JobController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id): string
+    public function destroy(Job $job): RedirectResponse
     {
-        return 'Destroy';
+
+        if ($job->company_logo) {
+            $this->deleteLogo($job->company_logo);
+        }
+
+        $job->delete();
+
+        return redirect()->route('jobs.index')->with('success', 'Job deleted successfully!');
     }
 
     protected function validatedData(Request $request): array
@@ -127,5 +131,13 @@ class JobController extends Controller
             'company_logo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'company_website' => 'nullable|url',
         ]);
+    }
+
+    protected function deleteLogo(string $companyLogoPath): void
+    {
+        if (file_exists(public_path('storage/' . $companyLogoPath))) {
+            unlink(public_path('storage/' . $companyLogoPath));
+            Storage::delete('public/logos' . baseName($companyLogoPath));
+        }
     }
 }
