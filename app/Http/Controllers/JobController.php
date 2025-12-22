@@ -11,7 +11,9 @@ use Illuminate\Support\Facades\Storage;
 class JobController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * @desc Show all job listings
+     * @route GET /jobs
+     * @return View
      */
     public function index(): View
     {
@@ -21,7 +23,9 @@ class JobController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * @desc Show create job form
+     * @route GET /jobs/create
+     * @return View
      */
     public function create(): View
     {
@@ -29,7 +33,9 @@ class JobController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * @desc Save job to database
+     * @route POST /jobs
+     * @return RedirectResponse
      */
     public function store(Request $request): RedirectResponse
     {
@@ -54,7 +60,10 @@ class JobController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * @desc Show job details
+     * @param Job $job
+     * @route GET /jobs/{$id}
+     * @return View
      */
     public function show(Job $job): View
     {
@@ -62,7 +71,9 @@ class JobController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * @desc Show job edit form
+     * @route GET /jobs/{$id}/edit
+     * @return View
      */
     public function edit(Job $job): View
     {
@@ -70,9 +81,13 @@ class JobController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * @desc Update job in database
+     * @param Request $request
+     * @param Job $job
+     * @route PUT /jobs/{$id}
+     * @return RedirectResponse
      */
-    public function update(Request $request, Job $job): string
+    public function update(Request $request, Job $job): RedirectResponse
     {
         $validatedData = $this->validatedData($request);
 
@@ -95,7 +110,9 @@ class JobController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * @desc Delete job from database
+     * @route DELETE /jobs/{job}
+     * @return RedirectResponse
      */
     public function destroy(Job $job): RedirectResponse
     {
@@ -109,6 +126,11 @@ class JobController extends Controller
         return redirect()->route('jobs.index')->with('success', 'Job deleted successfully!');
     }
 
+    /**
+     * @desc Validate job data
+     * @param Request $request
+     * @return array
+     */
     protected function validatedData(Request $request): array
     {
         return $request->validate([
@@ -133,6 +155,11 @@ class JobController extends Controller
         ]);
     }
 
+    /**
+     * @desc Delete logo from storage
+     * @param string $companyLogoPath
+     * @return void
+     */
     protected function deleteLogo(string $companyLogoPath): void
     {
         if (file_exists(public_path('storage/' . $companyLogoPath))) {
