@@ -20,7 +20,7 @@ class RegisterController extends Controller
         return view('auth.register');
     }
 
-        /**
+    /**
      * @desc Show register form
      * @route GET /register
      * @return View
