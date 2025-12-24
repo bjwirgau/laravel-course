@@ -6,6 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
+use Illuminate\Support\Facades\Log;
 
 class JobSeeder extends Seeder
 {
@@ -34,9 +35,6 @@ class JobSeeder extends Seeder
                 // Assign a random user id to the remaining job listings
                 $listing['user_id'] = $userIds[array_rand($userIds)];
             }
-
-            // Randomly assign a user id to each job listing
-            $listing['user_id'] = $userIds[array_rand($userIds)];
 
             // Add timestamps to each job listing
             $listing['created_at'] = now();
