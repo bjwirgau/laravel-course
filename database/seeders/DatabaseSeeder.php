@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
         DB::statement('ALTER TABLE users AUTO_INCREMENT = 1');
         DB::statement('ALTER TABLE job_listings AUTO_INCREMENT = 1');
 
+        $this->call(TestUserSeeder::class);
         $this->call(RandomUserSeeder::class);
         $this->call(JobSeeder::class);
     }
